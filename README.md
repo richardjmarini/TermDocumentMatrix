@@ -1,8 +1,8 @@
-TermDocumentMatrix
-==================
+Vector Space Search Engine 
+=================
 
 Simple Vector Space Search Engine
-
+using a Term Document Matrix
 ex:
 
 ./search.py --query="silver and gold" 
