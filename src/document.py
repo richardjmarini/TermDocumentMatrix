@@ -10,13 +10,15 @@
       http://en.wikipedia.org/wiki/Norm_%28mathematics%29
 """
 
-from nltk import word_tokenize
+from nltk import word_tokenize, corpus
+from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from hashlib import md5
 
 class Document(object):
 
-   stopwords= ("of", "in", "a", "the", "got", "into", "is", "it", "and", "-", ",", ".", "\n")
+   #stopwords= ("of", "in", "a", "the", "got", "into", "is", "it", "and", "-", ",", ".", "\n")
+   stopwords= stopwords.words('english')
 
    def __init__(self, text):
 
