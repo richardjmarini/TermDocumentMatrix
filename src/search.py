@@ -52,5 +52,11 @@ if __name__ == '__main__':
    print "========================================"
    #print "Query: ", opts.query
    print "Results:"
+   results= []
    for (cosine, (document_id, text)) in tdm.find(opts.query):
+      results.append((cosine, document_id))
+
+   # sort the results by cosine similularity
+   for (cosine, document_id) in sorted(results, key= lambda r: r[0], reverse= True):
       print cosine, document_id
+  
