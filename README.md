@@ -10,7 +10,8 @@ The simple sample crawler can found here:
 
 https://github.com/singleplatform/Impetus1
 
-The "business provided" blurb was then extacted from the documents.  These blurbs are what you'll find in the documents directory of this project:
+The "business provided" blurb was then extacted from the documents.  
+These blurbs are what you'll find in the documents directory of this project:
 
 https://github.com/richardjmarini/VectorSpaceSearchEngine/tree/master/documents
 
