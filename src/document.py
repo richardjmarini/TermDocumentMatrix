@@ -28,7 +28,8 @@ class Document(object):
       self.id= id if id else md5(text).hexdigest() 
 
       stemmer= PorterStemmer()
-      self.tokens= filter(lambda word: stemmer.stem(word.lower()) not in self.stopwords,  word_tokenize(self.text))
+      self.tokens= filter(lambda word: stemmer.stem(word.lower()).lower() not in self.stopwords,  word_tokenize(self.text))
+
 
    def __repr__(self):
   

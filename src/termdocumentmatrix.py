@@ -13,6 +13,7 @@
 from itertools import chain, izip
 from sets import Set
 from math import sqrt, log
+from sys import exit
 
 from document import Document
 from vector import Vector

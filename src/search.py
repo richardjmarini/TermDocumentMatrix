@@ -33,7 +33,7 @@ def parse_args(argv):
 
    opts, args= optParser.parse_args()
    if opts.query == stdin:
-      setattr(opts, "query", stdin.read())
+      setattr(opts, "query", stdin.read().lower())
 
    return opts
 
@@ -44,13 +44,13 @@ if __name__ == '__main__':
 
    tdm= TermDocumentMatrix()
 
-   [tdm.add(sub("\n", "", open(filename).read()), id= filename) for filename in glob(opts.documents)]
+   [tdm.add(sub("\n", "", open(filename).read().lower()), id= filename) for filename in glob(opts.documents)]
 
    tdm.index()
    tdm.display()
 
    print "========================================"
-   print "Query: ", opts.query
+   #print "Query: ", opts.query
    print "Results:"
    for (cosine, (document_id, text)) in tdm.find(opts.query):
       print cosine, document_id
