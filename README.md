@@ -94,5 +94,7 @@ http://en.wikipedia.org/wiki/Cosine_similarity
 
 http://en.wikipedia.org/wiki/Norm_%28mathematics%29
 
+###Other:
+http://scikit-learn.org/stable/
 
 
