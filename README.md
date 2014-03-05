@@ -2,6 +2,31 @@
 
 ###Simple Vector Space Search Engine using a Term Document Matrix
 
+Vector space search engines help us search unstructured documents for "topical" data. The documents directory contains 7 sample documents.  These 7 documents were obtained by crawling Yelp's search results for "Resturants in Manhattan".  The crawler was build using the Impetus Framework found here:
+
+https://github.com/richardjmarini/Impetus 
+
+The simple sample crawler can found here: 
+
+https://github.com/singleplatform/Impetus1/blob/master/sites/yelp.py  
+
+The "business provided" blurb was then extacted from the documents.  These blurbs are what you'll find in the documents directory of this project:
+
+https://github.com/richardjmarini/VectorSpaceSearchEngine/tree/master/documents
+
+You'll notice the document contain only the content of the blurb and all the structure has been stripped away.  The documents are as follows:
+```
+0.txt: a french resturant
+1.txt: an american steakhouse
+3.txt: an american tavern
+5.txt: an american bar and grill containing the word French
+8.txt: a healthfood resturant
+11.txt: a japanese resturant
+15.txt: another french resturant
+```
+
+We can then search the content of the documents for a given topic:
+
 ###Example Usage:
 ```
 $ ./search.py --query="french resturants"
