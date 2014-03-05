@@ -25,7 +25,7 @@ class TermDocumentMatrix(dict):
 
    def add(self, text, id= None):
      
-      document= Document(text)
+      document= Document(text, id)
 
       self[document.id]= document
 
@@ -55,8 +55,7 @@ class TermDocumentMatrix(dict):
             |D|= number of documents
             1 + | {d e D | t e d} |= number of documents containing term
       """
-
-      inverse_document_frequency= log(len(documents) / (1 + sum([1 if term in document.tokens else 0 for document in documents])))
+      inverse_document_frequency= log(len(documents) / float(1 + sum([1 if term in document.tokens else 0 for document in documents])))
 
       return inverse_document_frequency
 
@@ -97,5 +96,5 @@ class TermDocumentMatrix(dict):
 
       cosines= [query_vector.cosine(vector) for vector in self.matrix]
 
-      for result in izip(cosines, self.values()):
+      for result in izip(cosines, self.items()):
          yield result

@@ -12,7 +12,7 @@
 
 from glob import glob
 from optparse import OptionParser, make_option
-from sys import exit, argv
+from sys import exit, argv, stdin
 from os import pardir, path
 from re import sub
 
@@ -26,15 +26,14 @@ def parse_args(argv):
 
    [optParser.add_option(opt) for opt in [
       make_option("-d", "--documents", default= path.join(pardir, "documents", "*.txt"), help= "documents directory"),
-      make_option("-q", "--query", default= None, help= "query to use for search")
+      make_option("-q", "--query", default= stdin, help= "query to use for search")
    ]]
 
    optParser.set_usage("%prog --query")
 
    opts, args= optParser.parse_args()
-   if not opts.query:
-      optParser.print_usage()
-      exit(-1)
+   if opts.query == stdin:
+      setattr(opts, "query", stdin.read())
 
    return opts
 
@@ -45,7 +44,7 @@ if __name__ == '__main__':
 
    tdm= TermDocumentMatrix()
 
-   [tdm.add(sub("\n", "", open(filename).read())) for filename in glob(opts.documents)]
+   [tdm.add(sub("\n", "", open(filename).read()), id= filename) for filename in glob(opts.documents)]
 
    tdm.index()
    tdm.display()
@@ -53,5 +52,5 @@ if __name__ == '__main__':
    print "========================================"
    print "Query: ", opts.query
    print "Results:"
-   for result in tdm.find(opts.query):
-      print result
+   for (cosine, (document_id, text)) in tdm.find(opts.query):
+      print cosine, document_id
