@@ -66,6 +66,24 @@ Results:
 -0.00141012332948 ../documents/11.txt  <-- lowest rank, document is pretty much blank
 ```
 
+As you can see, the closet matched documents to document 5 (an American Resturants) were other American resturants.
+
+That's about it!
+
+Now, let's go have some Sake.  ...hmmm, where should we go?
+```
+$ ./search.py --query="sake"
+Results:
+0.396005214833 ../documents/11.txt
+0.0 ../documents/0.txt
+0.0 ../documents/1.txt
+0.0 ../documents/8.txt
+0.0 ../documents/5.txt
+0.0 ../documents/3.txt
+0.0 ../documents/15.txt
+```
+
+
 ###Resources:
 http://en.wikipedia.org/wiki/Vector_space_model
 
