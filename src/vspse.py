@@ -10,13 +10,80 @@
       http://en.wikipedia.org/wiki/Norm_%28mathematics%29
 """
 
-from itertools import chain, izip
-from sets import Set
+from itertools import izip
 from math import sqrt, log
+from itertools import chain, izip
+from hashlib import md5
+from sets import Set
 from sys import exit
 
-from document import Document
-from vector import Vector
+from nltk import word_tokenize, corpus
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+
+
+class Vector(object):
+
+   def __init__(self, elements):
+
+      super(Vector, self).__init__()
+      self.elements= elements
+
+   def __repr__(self):
+
+      return repr(self.elements)
+    
+   def norm(self):
+      """
+         ||x||:= sqrt( sum( x[i]^2 ) )
+      """
+      norm= sqrt(sum([frequency * frequency for frequency in self.elements]))
+
+      return norm
+
+   def dot(self, vector):
+      """
+      computers inner dot product of vectors
+      """
+
+      dot= sum([frequency1 * frequency2 for frequency1, frequency2 in izip(self.elements, vector)])
+
+      return dot
+
+   def cosine(self, vector):
+      """
+         sum( d[i] * q[i] ) / ( ||d|| * ||q|| )
+         where:
+            ||q||= sqrt( sum ( q[i]^2 ) )
+      """
+      try:
+         cosine= self.dot(vector) / (self.norm() * Vector(vector).norm())
+      except ZeroDivisionError:
+         cosine= 0.0
+
+      return cosine
+
+
+class Document(object):
+
+   #stopwords= ("of", "in", "a", "the", "got", "into", "is", "it", "and", "-", ",", ".", "\n")
+   stopwords= stopwords.words('english')
+
+   def __init__(self, text, id= None):
+
+      super(Document, self).__init__()
+
+      self.text= text
+      self.id= id if id else md5(text).hexdigest() 
+
+      stemmer= PorterStemmer()
+      self.tokens= filter(lambda word: stemmer.stem(word.lower()).lower() not in self.stopwords,  word_tokenize(self.text))
+
+
+   def __repr__(self):
+  
+      return repr(self.text)
+
 
 class TermDocumentMatrix(dict):
 
