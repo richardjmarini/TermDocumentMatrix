@@ -28,7 +28,7 @@ You'll notice the document contain only the content of the blurb and all the str
 
 We can then search the content of the documents for a given topic:
 
-###Example Usage:
+###Simple Example Usage:
 ```
 $ ./search.py --query="french resturants"
 
@@ -51,10 +51,11 @@ $ grep -i french ../documents/*.txt --files-with-matches
 
 ```
 
-If we manually examine those documents we'll find documents 0 and 15, the two highest rank documents, are indeed full French resturants.  If we look at document 5 we'll see this an American cusine resturant and the document merley contains the word French in discussing how the Chef's broke with French conventions -- therefore it's the lowest ranked result of all documents containing the word French
+If we manually examine those documents we'll find documents 0 and 15, the two highest rank documents, are indeed full French resturants.  If we look at document 5 we'll see this an American cusine resturant and the document merley contains the word French in discussing how the Chef's broke with French conventions -- therefore it's the lowest ranked result of all documents containing the word French.
 
+###More Complex Example:
 
-We can also search for documents "like" other documents. Lets use document 5 as our search criteria. If you recall document 5 is an American resturant but the document also contains the term French.  Lets see what happens: 
+We can also search for documents "like" other documents. Lets use document 5 as our search criteria. If you recall document 5 is an American resturant but the document also contains the term French.  By using the entire document as the query (and not just keywords as the simple example showed above) we can discern what "type" of restaurant document 5 is and implicily create a query to search for other documents "like" itself. Lets see what happens: 
 ```
 $ cat ../documents/5.txt  | ./search.py 
 Results:
@@ -67,7 +68,7 @@ Results:
 -0.00141012332948 ../documents/11.txt  <-- lowest rank, document is pretty much blank
 ```
 
-As you can see, the closet matched documents to document 5 (an American Resturants) were other American resturants.
+As you can see, the closet matched documents to document 5 (an American Resturant) were other American resturants. We were able to discern that document 5 was an American Resturant and due to the realavance of the world "American" within the document and then find other documents like itself. All with the same algorithm we used in the simple keyword search above.  Our program was able to recognize keywords within the document with out explicitly stateing what the keywords are. 
 
 That's about it!
 
