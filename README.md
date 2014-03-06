@@ -2,7 +2,7 @@
 
 ###Simple Vector Space Search Engine using a Term Document Matrix
 
-Vector space search engines help us search unstructured documents for "topical" data. The documents directory contains 7 sample documents.  These 7 documents were obtained by crawling Yelp's search results for "Resturants in Manhattan".  The crawler was build using the Impetus Framework found here:
+Vector space search engines help us search unstructured documents for "topical" data. The documents directory contains 7 sample documents.  These 7 documents were obtained by crawling Yelp's search results for "Restaurants in Manhattan".  The crawler was build using the Impetus Framework found here:
 
 https://github.com/richardjmarini/Impetus 
 
@@ -10,7 +10,7 @@ The simple sample crawler can found here:
 
 https://github.com/singleplatform/Impetus1
 
-The "business provided" blurb was then extacted from the documents.  
+The "business provided" blurb was then extracted from the documents.  
 These blurbs are what you'll find in the documents directory of this project:
 
 https://github.com/richardjmarini/VectorSpaceSearchEngine/tree/master/documents
@@ -51,11 +51,11 @@ $ grep -i french ../documents/*.txt --files-with-matches
 
 ```
 
-If we manually examine those documents we'll find documents 0 and 15, the two highest rank documents, are indeed full French resturants.  If we look at document 5 we'll see this an American cusine resturant and the document merley contains the word French in discussing how the Chef's broke with French conventions -- therefore it's the lowest ranked result of all documents containing the word French.
+If we manually examine those documents we'll find documents 0 and 15, the two highest rank documents, are indeed full French restaurants.  If we look at document 5 we'll see this an American cuisine restaurant and the document mereley contains the word French in discussing how the Chef's broke with French conventions -- therefore it's the lowest ranked result of all documents containing the word French.
 
 ###More Complex Example:
 
-We can also search for documents "like" other documents. Lets use document 5 as our search criteria. If you recall document 5 is an American resturant but the document also contains the term French.  By using the entire document as the query (and not just keywords as the simple example showed above) we can discern what "type" of restaurant document 5 is and implicily create a query to search for other documents "like" itself. Lets see what happens: 
+We can also search for documents "like" other documents. Lets use document 5 as our search criteria. If you recall document 5 is an American restaurant but the document also contains the term French.  By using the entire document as the query (and not just keywords as the simple example showed above) we can discern what "type" of restaurant document 5 is and implicitly create a query to search for other documents "like" itself. Lets see what happens: 
 ```
 $ cat ../documents/5.txt  | ./search.py 
 Results:
@@ -68,7 +68,7 @@ Results:
 -0.00141012332948 ../documents/11.txt  <-- lowest rank, document is pretty much blank
 ```
 
-As you can see, the closet matched documents to document 5 (an American Resturant) were other American resturants. We were able to discern that document 5 was an American Resturant and due to the realavance of the world "American" within the document and then find other documents like itself. All with the same algorithm we used in the simple keyword search above.  Our program was able to recognize keywords within the document with out explicitly stateing what the keywords are. 
+As you can see, the closet matched documents to document 5 (an American Restaurant) were other American restaurants. We were able to discern that document 5 was an American Restaurant and due to the relevance of the world "American" within the document and then find other documents like itself. All with the same algorithm we used in the simple keyword search above.  Our program was able to recognize keywords within the document with out explicitly stating what the keywords are. 
 
 That's about it!
 
