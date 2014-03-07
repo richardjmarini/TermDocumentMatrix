@@ -17,27 +17,27 @@ https://github.com/richardjmarini/VectorSpaceSearchEngine/tree/master/documents
 
 You'll notice the document contain only the content of the blurb and all the structure has been stripped away.  The documents are as follows:
 ```
-0.txt: a french resturant
+0.txt: a french restaurant
 1.txt: an american steakhouse
 3.txt: an american tavern
 5.txt: an american bar and grill containing the word French
-8.txt: a healthfood resturant
-11.txt: a japanese resturant
-15.txt: another french resturant
+8.txt: a healthfood restaurant
+11.txt: a japanese restaurant
+15.txt: another french restaurant
 ```
 
 We can then search the content of the documents for a given topic:
 
 ###Simple Example Usage:
 ```
-$ ./search.py --query="french resturants"
+$ ./search.py --query="french"
 
 Results:
 0.0613160175473 ../documents/0.txt    <-- highest ranked document
 0.0253357267547 ../documents/15.txt   <-- second higest ranked document
 0.0236242433804 ../documents/5.txt    <-- third higest ranked document
 0.0 ../documents/1.txt                <-- unrelated "American Steakhouse"
-0.0 ../documents/11.txt               <-- unrelated "Japanese" resturant -- and the document is mostly blank 
+0.0 ../documents/11.txt               <-- unrelated "Japanese" restaurant -- and the document is mostly blank 
 0.0 ../documents/8.txt                <-- unrelated "health food"
 0.0 ../documents/3.txt                <-- unrelated "American Tavern"
 ```
@@ -60,11 +60,11 @@ We can also search for documents "like" other documents. Lets use document 5 as 
 $ cat ../documents/5.txt  | ./search.py 
 Results:
 0.803445878371 ../documents/5.txt      <-- The first "closet" match is the document itself (typically we'd ignore this)
-0.142620585035 ../documents/3.txt      <-- The second "closet" match another "American Resturant"
+0.142620585035 ../documents/3.txt      <-- The second "closet" match another "American Restaurant"
 0.133529489897 ../documents/1.txt      <-- The third "closet" match is an "American Steak House"
-0.115629453888 ../documents/0.txt      <-- a french resturant, because of the word French in the orginal doc 
-0.0742452152519 ../documents/15.txt    <-- another french resturant, same as above
-0.0143866001622 ../documents/8.txt     <-- unrelated resturant but has some related terms such as "culinary"
+0.115629453888 ../documents/0.txt      <-- a french restaurant, because of the word French in the orginal doc 
+0.0742452152519 ../documents/15.txt    <-- another french restaurant, same as above
+0.0143866001622 ../documents/8.txt     <-- unrelated restaurant but has some related terms such as "culinary"
 -0.00141012332948 ../documents/11.txt  <-- lowest rank, document is pretty much blank
 ```
 
