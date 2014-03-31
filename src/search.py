@@ -31,7 +31,7 @@ from sys import exit, argv, stdin
 from os import pardir, path
 from re import sub
 
-from vspse import Document, Vector, TermDocumentMatrix
+from vespse import Document, Vector, TermDocumentMatrix
 
 def parse_args(argv):
 

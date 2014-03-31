@@ -10,6 +10,6 @@ setup(
    long_description= '''
       Vector Space Search Engine
    ''',
-   py_modules= ['vspse']
+   py_modules= ['vespse']
 )
 
