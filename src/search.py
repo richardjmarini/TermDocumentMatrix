@@ -1,14 +1,29 @@
 #!/usr/bin/env python
-"""
-   Author: Richard J. Marini (richardjmarini@gmail.com)
-   Date: 02/05/2014
-   Description:  Vector space search engine 
-   Development Resources:
-      http://en.wikipedia.org/wiki/Vector_space_model
-      http://en.wikipedia.org/wiki/Tf-idf
-      http://en.wikipedia.org/wiki/Cosine_similarity
-      http://en.wikipedia.org/wiki/Norm_%28mathematics%29
-"""
+#---------------------------------------------------------------------------
+#   Author: Richard J. Marini (richardjmarini@gmail.com)
+#   Date: 02/05/2014
+#   Name: Vespse (Vector Space Search Engine)
+#   Description:  A simple Vector space search engine
+#   Development Resources:
+#      http://en.wikipedia.org/wiki/Vector_space_model
+#      http://en.wikipedia.org/wiki/Tf-idf
+#      http://en.wikipedia.org/wiki/Cosine_similarity
+#      http://en.wikipedia.org/wiki/Norm_%28mathematics%29
+#
+#   License:
+#      Vespse is free software: you can redistribute it and/or modify
+#      it under the terms of the GNU General Public License as published by
+#      the Free Software Foundation, either version 2 of the License, or
+#      any later version.
+#
+#      Vespse is distributed in the hope that it will be useful,
+#      but WITHOUT ANY WARRANTY; without even the implied warranty of
+#      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#      GNU General Public License for more details.
+#
+#      You should have received a copy of the GNU General Public License
+#      along with Vespe.  If not, see <http://www.gnu.org/licenses/>.
+#---------------------------------------------------------------------------
 
 from glob import glob
 from optparse import OptionParser, make_option

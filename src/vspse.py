@@ -1,14 +1,29 @@
 #!/usr/bin/env python
-"""
-   Author: Richard J. Marini (richardjmarini@gmail.com)
-   Date: 02/05/2014
-   Description:  Vector space search engine 
-   Development Resources:
-      http://en.wikipedia.org/wiki/Vector_space_model
-      http://en.wikipedia.org/wiki/Tf-idf
-      http://en.wikipedia.org/wiki/Cosine_similarity
-      http://en.wikipedia.org/wiki/Norm_%28mathematics%29
-"""
+#---------------------------------------------------------------------------
+#   Author: Richard J. Marini (richardjmarini@gmail.com)
+#   Date: 02/05/2014
+#   Name: Vespse (Vector Space Search Engine)
+#   Description:  A simple Vector space search engine 
+#   Development Resources:
+#      http://en.wikipedia.org/wiki/Vector_space_model
+#      http://en.wikipedia.org/wiki/Tf-idf
+#      http://en.wikipedia.org/wiki/Cosine_similarity
+#      http://en.wikipedia.org/wiki/Norm_%28mathematics%29
+#
+#   License:
+#      Vespse is free software: you can redistribute it and/or modify
+#      it under the terms of the GNU General Public License as published by
+#      the Free Software Foundation, either version 2 of the License, or
+#      any later version.
+#
+#      Vespse is distributed in the hope that it will be useful,
+#      but WITHOUT ANY WARRANTY; without even the implied warranty of
+#      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#      GNU General Public License for more details.
+#
+#      You should have received a copy of the GNU General Public License
+#      along with Vespe.  If not, see <http://www.gnu.org/licenses/>.
+#---------------------------------------------------------------------------
 
 from itertools import izip
 from math import sqrt, log
@@ -67,7 +82,8 @@ class Vector(object):
 class Document(object):
 
    #stopwords= ("of", "in", "a", "the", "got", "into", "is", "it", "and", "-", ",", ".", "\n")
-   stopwords= stopwords.words('english')
+   stopwords= stopwords.words('english') #+ ['aly', 'alley', 'arc', 'arcade', 'ave', 'avenue', 'bch', 'beach', 'bg', 'burg', 'bgs', 'burgs', 'blf', 'bluff', 'blvd', 'boulevard', 'bnd', 'bend', 'br', 'branch', 'brg', 'bridge', 'brk', 'brook', 'brks', 'brooks', 'btm', 'bottom', 'byp', 'bypass', 'byu', 'bayou', 'cir', 'circle', 'cirs', 'circles', 'clb', 'club', 'clf', 'cliff', 'clfs', 'cliffs', 'cmn', 'common', 'cor', 'corner', 'cors', 'corners', 'cp', 'camp', 'cpe', 'cape', 'cres', 'crescent', 'crk', 'creek', 'crse', 'course', 'crst', 'crest', 'cswy', 'causeway', 'ct', 'court', 'ctr', 'center', 'ctrs', 'centers', 'cts', 'courts', 'curv', 'curve', 'cv', 'cove', 'cvs', 'coves', 'cyn', 'canyon', 'dl', 'dale', 'dm', 'dam', 'ln', 'lane', 'rd', 'road', 'st', 'street', 'terr', 'terrace', 'xing', 'crossing'] + ['academy', 'acad.', 'association', 'assn.', 'assn', 'associates', 'assoc.', 'college', 'coll.', 'company', 'co.', 'corporation', 'corp.', 'doing business as', 'd.b.a.', 'dba', 'incorporated', 'inc.', 'institute/institution', 'inst.', 'limited', 'ltd.', 'ltd', 'limited liability company (or partnership)', 'llc', 'llc (llp)', 'public limited company', 'plc', 'manufacturing', 'mfg.', 'mfg', 'publishing', 'pubg.', 'pubg', 'publications', 'pub., pubs., pubs', 'press', 'pr.', 'university', 'univ.', 'u.', 'uni.']
+
 
    def __init__(self, text, id= None):
 
@@ -78,7 +94,6 @@ class Document(object):
 
       stemmer= PorterStemmer()
       self.tokens= filter(lambda word: stemmer.stem(word.lower()).lower() not in self.stopwords,  word_tokenize(self.text))
-
 
    def __repr__(self):
   
