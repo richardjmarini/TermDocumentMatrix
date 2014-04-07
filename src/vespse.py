@@ -83,16 +83,14 @@ class Document(object):
 
    #stopwords= ("of", "in", "a", "the", "got", "into", "is", "it", "and", "-", ",", ".", "\n")
    stopwords= stopwords.words('english')
-  
 
-   def __init__(self, text, id= None, stopwords= []):
+   def __init__(self, text, id= None, additional_stopwords= []):
 
       super(Document, self).__init__()
 
       self.text= text
       self.id= id if id != None else md5(text).hexdigest() 
-      self.stopwords+= stopwords + ['aly', 'alley', 'arc', 'arcade', 'ave', 'avenue', 'bch', 'beach', 'bg', 'burg', 'bgs', 'burgs', 'blf', 'bluff', 'blvd', 'boulevard', 'bnd', 'bend', 'br', 'branch', 'brg', 'bridge', 'brk', 'brook', 'brks', 'brooks', 'btm', 'bottom', 'byp', 'bypass', 'byu', 'bayou', 'cir', 'circle', 'cirs', 'circles', 'clb', 'club', 'clf', 'cliff', 'clfs', 'cliffs', 'cmn', 'common', 'cor', 'corner', 'cors', 'corners', 'cp', 'camp', 'cpe', 'cape', 'cres', 'crescent', 'crk', 'creek', 'crse', 'course', 'crst', 'crest', 'cswy', 'causeway', 'ct', 'court', 'ctr', 'center', 'ctrs', 'centers', 'cts', 'courts', 'curv', 'curve', 'cv', 'cove', 'cvs', 'coves', 'cyn', 'canyon', 'dl', 'dale', 'dm', 'dam', 'ln', 'lane', 'rd', 'road', 'st', 'street', 'terr', 'terrace', 'xing', 'crossing'] + ['academy', 'acad.', 'association', 'assn.', 'assn', 'associates', 'assoc.', 'college', 'coll.', 'company', 'co.', 'corporation', 'corp.', 'doing business as', 'd.b.a.', 'dba', 'incorporated', 'inc.', 'institute/institution', 'inst.', 'limited', 'ltd.', 'ltd', 'limited liability company (or partnership)', 'llc', 'llc (llp)', 'public limited company', 'plc', 'manufacturing', 'mfg.', 'mfg', 'publishing', 'pubg.', 'pubg', 'publications', 'pub., pubs., pubs', 'press', 'pr.', 'university', 'univ.', 'u.', 'uni.']
-
+      self.stopwords+= additional_stopwords
 
       stemmer= PorterStemmer()
       self.tokens= filter(lambda word: stemmer.stem(word.lower()).lower() not in self.stopwords,  word_tokenize(self.text))
@@ -104,13 +102,14 @@ class Document(object):
 
 class TermDocumentMatrix(dict):
 
-   def __init__(self): #, *text):
+   def __init__(self, additional_stopwords= []): #, *text):
 
       super(TermDocumentMatrix, self).__init__()
+      self.stopwords= additional_stopwords
 
    def add(self, text, id= None):
      
-      document= Document(text, id= id)
+      document= Document(text, id= id, additional_stopwords= self.stopwords)
 
       self[document.id]= document
 
