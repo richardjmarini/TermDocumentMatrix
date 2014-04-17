@@ -102,10 +102,11 @@ class Document(object):
 
 class TermDocumentMatrix(dict):
 
-   def __init__(self, additional_stopwords= []): #, *text):
+   def __init__(self, additional_stopwords= [], idf_enabled= True):
 
       super(TermDocumentMatrix, self).__init__()
       self.stopwords= additional_stopwords
+      self.idf_enabled= idf_enabled
 
    def add(self, text, id= None):
      
@@ -124,8 +125,7 @@ class TermDocumentMatrix(dict):
    def decompose(self, documents):
 
       terms= list(Set(chain.from_iterable([document.tokens for document in documents])))
-
-      matrix= [map(lambda term: self.term_frequency(term, document.tokens) * self.inverse_document_frequency(term, documents), terms) for document in documents]
+      matrix= [map(lambda term: self.term_frequency(term, document.tokens) * (self.inverse_document_frequency(term, documents) if self.idf_enabled else 1), terms) for document in documents]
 
       return (terms, matrix)
 
@@ -140,7 +140,7 @@ class TermDocumentMatrix(dict):
             1 + | {d e D | t e d} |= number of documents containing term
       """
       inverse_document_frequency= log(len(documents) / float(1 + sum([1 if term in document.tokens else 0 for document in documents])))
-
+       
       return inverse_document_frequency
 
    @staticmethod
@@ -177,7 +177,7 @@ class TermDocumentMatrix(dict):
       """
 
       query_vector= Vector(map(lambda term: Document(query).tokens.count(term), self.terms))
-
+      
       cosines= [query_vector.cosine(vector) for vector in self.matrix]
 
       for result in izip(cosines, self.items()):

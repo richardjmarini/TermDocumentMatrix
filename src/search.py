@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
    opts= parse_args(argv)
 
-   tdm= TermDocumentMatrix()
+   tdm= TermDocumentMatrix(idf_enabled= False)
 
    [tdm.add(sub("\n", "", open(filename).read().lower()), id= filename) for filename in glob(opts.documents)]
 
