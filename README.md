@@ -1,19 +1,19 @@
-#Vector Space Search Engine 
+#Vespse
 
-###Simple Vector Space Search Engine using a Term Document Matrix
+###Vector Space Search Engine using a Term Document Matrix
 
-Vector space search engines help us search unstructured documents for "topical" data. The documents directory contains 7 sample documents.  These 7 documents were obtained by crawling Yelp's search results for "Restaurants in Manhattan".  The crawler was build using the Impetus Framework found here:
+Vector space search engines help us search unstructured documents for "topical" data. The documents directory contains 7 sample documents.  These 7 documents were obtained by crawling Yelp's search results for "Restaurants in Manhattan".  The crawler was built using the Impetus Framework found here:
 
 https://github.com/richardjmarini/Impetus 
 
 The simple sample crawler can found here: 
 
-https://github.com/singleplatform/Impetus1
+https://github.com/singleplatform/Impetus
 
 The "business provided" blurb was then extracted from the documents.  
 These blurbs are what you'll find in the documents directory of this project:
 
-https://github.com/richardjmarini/VectorSpaceSearchEngine/tree/master/documents
+https://github.com/richardjmarini/Vespse/tree/master/documents
 
 You'll notice the document contain only the content of the blurb and all the structure has been stripped away.  The documents are as follows:
 ```
