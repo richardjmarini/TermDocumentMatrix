@@ -120,7 +120,7 @@ class TermDocumentMatrix(dict):
 
    def index(self):
 
-      (self.terms, self.matrix)= self.decompose(self.values())
+      (self.terms, self.frequency_matrix)= self.decompose(self.values())
     
    def decompose(self, documents):
 
@@ -166,7 +166,7 @@ class TermDocumentMatrix(dict):
          print "terms:",
          term_id= 0
          for term in self.terms:
-            print "\t", term, self.matrix[doc_id][term_id]
+            print "\t", term, self.frequency_matrix[doc_id][term_id]
             term_id+= 1
          doc_id+= 1
       print
@@ -178,7 +178,7 @@ class TermDocumentMatrix(dict):
 
       query_vector= Vector(map(lambda term: query.tokens.count(term), self.terms))
       
-      cosines= [query_vector.cosine(vector) for vector in self.matrix]
+      cosines= [query_vector.cosine(vector) for vector in self.frequency_matrix]
 
       for result in izip(cosines, self.items()):
          yield result
