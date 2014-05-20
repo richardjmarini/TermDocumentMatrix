@@ -176,7 +176,7 @@ class TermDocumentMatrix(dict):
       queries the document set and calculates realvance to query termss
       """
 
-      query_vector= Vector(map(lambda term: Document(query).tokens.count(term), self.terms))
+      query_vector= Vector(map(lambda term: query.tokens.count(term), self.terms))
       
       cosines= [query_vector.cosine(vector) for vector in self.matrix]
 
