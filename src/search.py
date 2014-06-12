@@ -38,8 +38,9 @@ def parse_args(argv):
    optParser= OptionParser()
 
    [optParser.add_option(opt) for opt in [
-      make_option("-d", "--documents", default= path.join(pardir, "documents", "*.txt"), help= "documents directory"),
-      make_option("-q", "--query", default= stdin, help= "query to use for search")
+      make_option("-d", "--documents", default= path.join(pardir, "documents"), help= "documents directory"),
+      make_option("-q", "--query", default= stdin, help= "query to use for search"),
+      make_option("-i", "--idf", action= 'store_true', default= False, dest= 'idf', help= "enable inverse document frequency mode")
    ]]
 
    optParser.set_usage("%prog --query")
@@ -55,7 +56,7 @@ if __name__ == '__main__':
 
    opts= parse_args(argv)
 
-   tdm= TermDocumentMatrix(idf_enabled= False)
+   tdm= TermDocumentMatrix(idf_enabled= opts.idf)
 
    [tdm.add(sub("\n", "", open(filename).read().lower()), id= filename) for filename in glob(opts.documents)]
 
