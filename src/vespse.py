@@ -36,6 +36,7 @@ from nltk import word_tokenize, corpus
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
+from __builtin__ import map
 
 class Vector(object):
 
